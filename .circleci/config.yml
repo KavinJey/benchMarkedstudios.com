@@ -1,33 +1,15 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: node:11
-    working_directory: ~/benchMarkedstudios.com
-    steps:
-      - checkout
-      - run:
-          name: Install Hexo CLI
-          command: npm install -g hexo-cli
-      - restore_cache:
-          keys:
-            - npm-deps-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
-          command: npm install
-      - save_cache:
-          key: npm-deps-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Generate static website
-          command: hexo generate
-      - run:
-          name: Install AWS CLI
-          command: |
-            apt update
-	        apt install pip 
-            pip install awscli
-      - run:
-          name: Push to S3 bucket
-          command: cd public/ && aws s3 sync . s3://benchmarkedstudios.com --region us-east-2
+    build:
+        docker:
+            - {image: 'node:11'}
+        working_directory: ~/benchMarkedstudios.com
+        steps:
+            - checkout
+            - {run: {name: 'Install Hexo CLI', command: 'npm install -g hexo-cli'}}
+            - {restore_cache: {keys: ['npm-deps-{{ checksum "package.json" }}']}}
+            - {run: {name: 'Install dependencies', command: 'npm install'}}
+            - {save_cache: {key: 'npm-deps-{{ checksum "package.json" }}', paths: [node_modules]}}
+            - {run: {name: 'Generate static website', command: 'hexo generate'}}
+            - {run: {name: 'Install AWS CLI', command: "apt updateapt install pip \npip install awscli\n"}}
+            - {run: {name: 'Push to S3 bucket', command: 'cd public/ && aws s3 sync . s3://benchmarkedstudios.com --region us-east-2'}}
