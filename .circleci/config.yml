@@ -28,7 +28,7 @@ jobs:
             apt update
             apt upgrade
             apt install -y python-pip
-            pip install awscli --upgrade --user
+            pip install awscli --upgrade
             
       - run:
           name: Push to S3 bucket
