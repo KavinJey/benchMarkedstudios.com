@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:9.9.0
+      - image: node:11
     working_directory: ~/benchMarkedstudios.com
     steps:
       - checkout
@@ -43,5 +43,5 @@ jobs:
             - {save_cache: {key: 'npm-deps-{{ checksum "package.json" }}', paths: [node_modules]}}
             - {run: {name: 'Generate static website', command: 'hexo generate'}}
             - {run: {name: 'Install AWS CLI', command: "apt update;apt upgrade;apt install -y python-pip; pip install awscli"}}
-            - {run: {name: 'Push to S3 bucket', command: 'cd public/ && aws s3 sync --region us-east-2 . s3://benchmarkedstudios.com '}}
+            - {run: {name: 'Push to S3 bucket', command: 'cd public/ && aws s3 sync . s3://benchmarkedstudios.com --region us-east-2'}}
 
