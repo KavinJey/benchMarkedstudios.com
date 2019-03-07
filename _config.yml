@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: benchMarkedStudios	
-subtitle: Custom Software Development for Small Businesses	
+title: Blog | benchMarked Studios	
+subtitle: Custom Solution To Unique Problems
 description: We provide enterprise level solutions to small businesses and individuals. With expertise in designing, developing and deplyogin reliable, scaleable systems at competitive rates.
 keywords: software, web development, websites, web applications
 author: Jeyakavin Jeyaranjan	
@@ -86,7 +86,7 @@ deploy:
 
 authors:
   default: 
-      name: 'Anon'
+      name: ' '
   kavin:
       name: 'Kavin Jey'
-      email: 'jeyakavin33@gmail.com'
+      email: 'kavinjey@benchMarkedstudios.com'
